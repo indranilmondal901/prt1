@@ -17,7 +17,7 @@ const Home = () => {
                 console.log(res.data.data)
                 setdata(res.data.data)
             })
-    }, [token])
+    }, [])
     console.log(data)
     console.log(typeof (data))
 
@@ -31,6 +31,10 @@ const Home = () => {
                 navigate("/")
             })
     }
+    // const handleDelete = (ISBN) =>{
+    //     axios.post("https://prt1b.onrender.com/delete-book",{token:token,ISBN:ISBN})
+    //     .then((res)=>console.log(res))
+    // }
     return (
         <div>
             <button onClick={() => { navigate("/addbook") }} style={{ alignContent: "flex-end", width: "100px" }}>Add Book</button>
@@ -41,13 +45,14 @@ const Home = () => {
                 <div id="wrapper-homeDiv">
                     {data && data?.map((sData, i) => {
                             return (
-                                <div onClick={() => { navigate(`edit/${sData}`) }}>
-                                    <img src="https://www.shutterstock.com/image-vector/open-book-vector-clipart-silhouette-260nw-795305758.jpg" />
+                                <div onClick={() => { navigate(`edit`) }}>
+                                    <img src="https://www.shutterstock.com/image-vector/open-book-vector-clipart-silhouette-260nw-795305758.jpg" alt={sData.book.title}/>
                                     <div>
                                         <h1 style={{textAlign:"center"}}>{sData.book.title}</h1>
                                         <p>Publisher: {sData.book.publisher}</p>
                                         <h2>Author: {sData.book.author}</h2>
                                     </div>
+                                    <button>Delete</button>
                                 </div>
                             )
                         })}
