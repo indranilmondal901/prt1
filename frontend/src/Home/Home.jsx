@@ -45,7 +45,7 @@ const Home = () => {
                 <div id="wrapper-homeDiv">
                     {data && data?.map((sData, i) => {
                             return (
-                                <div onClick={() => { navigate("/edit") }}>
+                                <div onClick={() => { navigate(`/info/${sData.book.ISBN}`) }}>
                                     <img src="https://www.shutterstock.com/image-vector/open-book-vector-clipart-silhouette-260nw-795305758.jpg" alt={sData.book.title}/>
                                     <div>
                                         <h1 style={{textAlign:"center"}}>{sData.book.title}</h1>

@@ -67,7 +67,7 @@ router.post("/login", async (req, res) => {
     }
 })
 //logout
-router.post("/logout",auth, async (req, res) => {
+router.post("/logout", auth, async (req, res) => {
     try {
         console.log(req.user.username);
         //logout from all devices
@@ -76,7 +76,7 @@ router.post("/logout",auth, async (req, res) => {
         res.status(200).send({
             message: "sucessfully logout"
         })
-    }catch(err){
+    } catch (err) {
         console.log(err.message)
         res.status(501).send({
             message: err.message
@@ -84,7 +84,7 @@ router.post("/logout",auth, async (req, res) => {
     }
 })
 //add book
-router.post("/add-book",auth,async(req,res)=>{
+router.post("/add-book", auth, async (req, res) => {
     const book = {
         title: req.body.title,
         ISBN: req.body.ISBN,
@@ -93,45 +93,91 @@ router.post("/add-book",auth,async(req,res)=>{
         publishDate: req.body.publishDate,
         publisher: req.body.publisher,
     }
-    req.user.books = await req.user.books.concat({book: book})
+    req.user.books = await req.user.books.concat({ book: book })
     const user = await req.user.save();
     res.status(200).send({
-        message:"Book sucessfully added",
+        message: "Book sucessfully added",
         data: user.books
     })
 
 })
 //update book
-router.put("/edit",auth,async(req,res)=>{
-    
-})
+router.put("/edit", auth, async (req, res) => {
+    const user = req.user;
+    const isbn = req.body.ISBN;
+    const bookToUpdate = user.books.find((book) => book.book.ISBN === isbn);
 
-//getting single book
-// router.post("/sbook",auth,async (req, res) => {
-//     const user = req.user
-//     console.log(user)
-//     const sbook = await user.books.findOne({ISBN: req.body.ISBN})
-//     console.log(sbook);
-//     res.status(200).send({
-//         data: sbook
-//     })
-// })
+    if (bookToUpdate) {
+        try {
+            // Update the book properties with the new values from the request body
+            bookToUpdate.book.title = req.body.title;
+            bookToUpdate.book.author = req.body.author;
+            bookToUpdate.book.description = req.body.description;
+            bookToUpdate.book.publishDate = req.body.publishDate;
+            bookToUpdate.book.publisher = req.body.publisher;
+
+            await user.save();
+
+            res.status(200).send({
+                message: "Book updated successfully",
+            });
+        } catch (err) {
+            console.log(err);
+            res.status(500).send({
+                message: "Internal server error",
+            });
+        }
+    } else {
+        res.status(404).send({
+            message: "Book not found",
+        });
+    }
+});
+
+
+//route for single book
+router.post("/sbook", auth, async (req, res) => {
+    const user = req.user;
+    const isbn = req.body.ISBN; // assuming the ISBN is passed as a string in the request body
+    // console.log(user)
+
+    try {
+        // Find the book in the user's books array that matches the ISBN
+        const sbook = await user.books.find((book) => book.book.ISBN === isbn);
+
+        if (sbook) {
+            res.status(200).send({
+                data: sbook,
+            });
+        } else {
+            res.status(404).send({
+                message: "Book not found",
+            });
+        }
+    } catch (err) {
+        console.log(err);
+        res.status(500).send({
+            message: "Internal server error",
+        });
+    }
+});
+
 
 //delete book
-router.post("/delete-book",auth,async(req,res)=>{
+router.post("/delete-book", auth, async (req, res) => {
     //delete single book
-    req.user.books = req.user.books.filter((val,index,arr)=>{
+    req.user.books = req.user.books.filter((val, index, arr) => {
         return val.book.ISBN != req.body.ISBN
     })
     const user = await req.user.save();
     res.status(200).send({
-        message:"Book sucessfully deleted",
+        message: "Book sucessfully deleted",
         data: user.books
     })
 })
 
 //getting book list
-router.post("/booklist",auth,async (req, res) => {
+router.post("/booklist", auth, async (req, res) => {
     const bookList = req.user.books;
     res.status(200).send({
         data: bookList

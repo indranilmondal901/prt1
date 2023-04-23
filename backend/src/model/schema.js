@@ -16,7 +16,10 @@ const userSchema = mongoose.Schema({
     books: [{
         book: {
             title: String,
-            ISBN: String,
+            ISBN: {
+                type:String,
+                unique: true
+            },
             author: String,
             description: String,
             publishDate: String,
