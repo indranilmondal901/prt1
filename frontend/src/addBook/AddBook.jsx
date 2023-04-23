@@ -26,6 +26,7 @@ const AddBook = () => {
     }
     return (
         <div>
+            <button style={{width:"100px" , backgroundColor:"red"}} onClick={()=>{useNavigate("/home")}}>Book List</button>
             <h1 style={{textAlign:"center"}}>ADD BOOK</h1>
             <form>
                 <input type='text' required onChange={(e) => { settitle(e.target.value) }} value={title} placeholder='title' />

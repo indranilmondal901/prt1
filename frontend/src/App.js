@@ -5,6 +5,7 @@ import Login from './login/Login';
 import Register from './register/Register';
 import Home from './Home/Home';
 import AddBook from './addBook/AddBook';
+import EditPage from './editPage/EditPage';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Route path='/register' element={<Register />} />
         <Route path='/home' element={<Home />} />
         <Route path='/addbook' element={<AddBook/>} />
+        <Route path='/edit' element={<EditPage/>}/>
       </Routes>
     </BrowserRouter>
   );
