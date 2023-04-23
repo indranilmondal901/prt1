@@ -12,7 +12,7 @@ const Register = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         if (password === confirmPassword) {
-            axios.post("http://localhost:8080/register", { username, password })
+            axios.post("https://prt1b.onrender.com/register", { username, password })
                 .then((res) => {
                     console.log(res);
                     window.alert(res.data.essage);

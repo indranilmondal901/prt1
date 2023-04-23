@@ -10,7 +10,7 @@ const Login = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        axios.post("http://localhost:8080/login", { username, password })
+        axios.post("https://prt1b.onrender.com/login", { username, password })
             .then((res) => {
                 console.log(res.data.token);
                 localStorage.setItem("token",res.data.token)

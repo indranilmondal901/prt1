@@ -15,7 +15,7 @@ const AddBook = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        axios.post("http://localhost:8080/add-book", { token,title, ISBN, author, description, publishDate, publisher })
+        axios.post("https://prt1b.onrender.com/add-book", { token,title, ISBN, author, description, publishDate, publisher })
             .then((res) => {
                 console.log(res);
                 window.alert(res.data.message);
