@@ -25,6 +25,7 @@ const Home = () => {
         axios.post("https://prt1b.onrender.com/logout", { token: token })
             .then((res) => {
                 console.log(res.data.message);
+                localStorage.clear("token");
                 window.alert(res.data.message)
                 navigate("/")
             })
@@ -39,7 +40,8 @@ const Home = () => {
                 {data && data?.map((sData,i)=>{
                     return(
                         <div style={{display:"flex",backgroundColor:"#f8f8", margin:"4px", padding:"4px"}} onClick={()=>{navigate(`edit/${sData}`)}}>
-                        <image src="https://www.shutterstock.com/image-vector/open-book-vector-clipart-silhouette-260nw-795305758.jpg"></image>
+                        {/* <image src="https://www.shutterstock.com/image-vector/open-book-vector-clipart-silhouette-260nw-795305758.jpg" ></image> */}
+                        <img src="https://www.shutterstock.com/image-vector/open-book-vector-clipart-silhouette-260nw-795305758.jpg" />
                         <h1 id="c-title">{sData.book.title}</h1>
                         <p id='c-des'>{sData.book.publisher}</p>
                         <h2 id="c-author">{sData.book.author}</h2>

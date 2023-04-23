@@ -106,14 +106,16 @@ router.put("/edit",auth,async(req,res)=>{
     
 })
 
-//getting book list
-router.post("/booklist",auth,async (req, res) => {
-    const user = req.user
-    const sbook = await user.books.filter({ISBN: req.body.ISBN})
-    res.status(200).send({
-        data: sbook
-    })
-})
+//getting single book
+// router.post("/sbook",auth,async (req, res) => {
+//     const user = req.user
+//     console.log(user)
+//     const sbook = await user.books.findOne({ISBN: req.body.ISBN})
+//     console.log(sbook);
+//     res.status(200).send({
+//         data: sbook
+//     })
+// })
 
 //delete book
 router.post("/delete-book",auth,async(req,res)=>{
