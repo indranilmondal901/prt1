@@ -1,0 +1,42 @@
+#wrapper-homeDiv {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin:15%;
+    margin-top: 2%;
+}
+
+#wrapper-homeDiv>div {
+    width: calc(33.33% - 8px);
+    margin-bottom: 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: #242020;
+    padding: 16px;
+    border-radius: 8px;
+    color: white;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease-in-out;
+}
+
+#wrapper-homeDiv>div:hover {
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+#wrapper-homeDiv>div img {
+    width: 100%;
+    max-height: 200px;
+    object-fit: contain;
+    margin-bottom: 16px;
+}
+
+#wrapper-homeDiv>div h1 {
+    margin: 0 0 8px 0;
+}
+
+#wrapper-homeDiv>div p,
+#wrapper-homeDiv>div h2 {
+    text-align: center;
+    margin: 0;
+}

@@ -1,6 +1,7 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import "../Home/Home.css";
 
 const Home = () => {
     const navigate = useNavigate()
@@ -18,10 +19,10 @@ const Home = () => {
             })
     }, [token])
     console.log(data)
-    console.log(typeof(data))
+    console.log(typeof (data))
 
 
-    const handelLogOut = ()=>{
+    const handelLogOut = () => {
         axios.post("https://prt1b.onrender.com/logout", { token: token })
             .then((res) => {
                 console.log(res.data.message);
@@ -32,22 +33,27 @@ const Home = () => {
     }
     return (
         <div>
-            <button onClick={()=>{navigate("/addbook")}} style={{alignContent:"flex-end", width:"100px" }}>Add Book</button>
-            <button style={{width:"100px" , backgroundColor:"red"}} onClick={handelLogOut}>LogOut</button>
+            <button onClick={() => { navigate("/addbook") }} style={{ alignContent: "flex-end", width: "100px" }}>Add Book</button>
+            <button style={{ width: "100px", backgroundColor: "red" }} onClick={handelLogOut}>LogOut</button>
             <div id="booklist">
-                <h1 style={{textAlign:"center" , color:"black" , fontSize:"3rem", textDecoration:"underline"}}>Book List</h1>
-                
-                {data && data?.map((sData,i)=>{
-                    return(
-                        <div style={{display:"flex",backgroundColor:"#f8f8", margin:"4px", padding:"4px"}} onClick={()=>{navigate(`edit/${sData}`)}}>
-                        {/* <image src="https://www.shutterstock.com/image-vector/open-book-vector-clipart-silhouette-260nw-795305758.jpg" ></image> */}
-                        <img src="https://www.shutterstock.com/image-vector/open-book-vector-clipart-silhouette-260nw-795305758.jpg" />
-                        <h1 id="c-title">{sData.book.title}</h1>
-                        <p id='c-des'>{sData.book.publisher}</p>
-                        <h2 id="c-author">{sData.book.author}</h2>
-                        </div>
-                    )
-                })}
+                <h1 style={{ textAlign: "center", color: "black", fontSize: "3rem", textDecoration: "underline" }}>Book List</h1>
+
+                <div id="wrapper-homeDiv">
+                    {data && data?.map((sData, i) => {
+                            return (
+                                <div onClick={() => { navigate(`edit/${sData}`) }}>
+                                    <img src="https://www.shutterstock.com/image-vector/open-book-vector-clipart-silhouette-260nw-795305758.jpg" />
+                                    <div>
+                                        <h1 style={{textAlign:"center"}}>{sData.book.title}</h1>
+                                        <p>Publisher: {sData.book.publisher}</p>
+                                        <h2>Author: {sData.book.author}</h2>
+                                    </div>
+                                </div>
+                            )
+                        })}
+                </div>
+
+
             </div>
         </div>
     )
