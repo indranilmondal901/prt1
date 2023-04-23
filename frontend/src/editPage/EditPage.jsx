@@ -5,7 +5,7 @@ const EditPage = () => {
   // const keyword = useParams();
   return (
     <div>
-      <h1>You Can Edit Data</h1>
+      <h1 style={{textAlign:"center"}}>You Can Edit Data here</h1>
     </div>
   )
 }
