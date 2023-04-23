@@ -105,6 +105,16 @@ router.post("/add-book",auth,async(req,res)=>{
 router.put("/edit",auth,async(req,res)=>{
     
 })
+
+//getting book list
+router.post("/booklist",auth,async (req, res) => {
+    const user = req.user
+    const sbook = await user.books.filter({ISBN: req.body.ISBN})
+    res.status(200).send({
+        data: sbook
+    })
+})
+
 //delete book
 router.post("/delete-book",auth,async(req,res)=>{
     //delete single book
