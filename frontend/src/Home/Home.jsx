@@ -31,10 +31,7 @@ const Home = () => {
                 navigate("/")
             })
     }
-    // const handleDelete = (ISBN) =>{
-    //     axios.post("https://prt1b.onrender.com/delete-book",{token:token,ISBN:ISBN})
-    //     .then((res)=>console.log(res))
-    // }
+    
     return (
         <div>
             <button onClick={() => { navigate("/addbook") }} style={{ alignContent: "flex-end", width: "100px" }}>Add Book</button>
@@ -52,7 +49,6 @@ const Home = () => {
                                         <p>Publisher: {sData.book.publisher}</p>
                                         <h2>Author: {sData.book.author}</h2>
                                     </div>
-                                    <button>Delete</button>
                                 </div>
                             )
                         })}
