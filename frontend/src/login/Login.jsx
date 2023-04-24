@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from "axios";
-import {Link, useNavigate} from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import "../login/Login.css";
 
 const Login = () => {
@@ -13,7 +13,7 @@ const Login = () => {
         axios.post("https://prt1b.onrender.com/login", { username, password })
             .then((res) => {
                 console.log(res.data.token);
-                localStorage.setItem("token",res.data.token)
+                localStorage.setItem("token", res.data.token)
                 window.alert(res.data.message)
                 navigate("/home")
             }).catch((err) => {
@@ -22,8 +22,8 @@ const Login = () => {
     }
     return (
         <div>
-                <h1 style={{textAlign:"center"}}>LOGIN</h1>
-            <form>
+            <h1 style={{ textAlign: "center" }}>LOGIN</h1>
+            <form id="login-form">
                 <input type='text' required onChange={(e) => { setusername(e.target.value) }} value={username} placeholder='email' />
                 <input type='password' required onChange={(e) => { setpassword(e.target.value) }} value={password} placeholder='password' />
                 <button type='submit' onClick={handleSubmit}>Submit</button>

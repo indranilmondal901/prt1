@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { Link,useNavigate } from 'react-router-dom';
+import "../addBook/AddBook.css";
 
 const AddBook = () => {
     const navigate = useNavigate()
@@ -25,10 +26,10 @@ const AddBook = () => {
             })
     }
     return (
-        <div>
-            <button style={{width:"100px" , backgroundColor:"red"}} onClick={()=>{navigate("/home")}}>Book List</button>
+        <div id="addbook-wrapper-div">
+            <Link to="/home" style={{textDecoration:"underline",fontSize:"1.9rem"}}> ◀ Book List</Link>
             <h1 style={{textAlign:"center"}}>ADD BOOK</h1>
-            <form>
+            <form id="addbook-form">
                 <input type='text' required onChange={(e) => { settitle(e.target.value) }} value={title} placeholder='title' />
                 <input type='text' required onChange={(e) => { setISBN(e.target.value) }} value={ISBN} placeholder='ISBN' />
                 <input type='text' required onChange={(e) => { setauthor(e.target.value) }} value={author} placeholder='author' />

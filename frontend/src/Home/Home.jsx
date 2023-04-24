@@ -33,7 +33,7 @@ const Home = () => {
     }
     
     return (
-        <div>
+        <div id="home-wrapper-div">
             <button onClick={() => { navigate("/addbook") }} style={{ alignContent: "flex-end", width: "100px" }}>Add Book</button>
             <button style={{ width: "100px", backgroundColor: "red" }} onClick={handelLogOut}>LogOut</button>
             <div id="booklist">

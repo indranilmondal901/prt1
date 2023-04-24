@@ -28,7 +28,7 @@ const Register = () => {
     return (
         <div>
             <h1 style={{ textAlign: "center" }}> Register Here</h1>
-            <form>
+            <form id="register-form">
                 <input type='text' required onChange={(e) => { setusername(e.target.value) }} value={username} placeholder='email' />
                 <input type='password' required onChange={(e) => { setpassword(e.target.value) }} value={password} placeholder='password' />
                 <input type='password' required onChange={(e) => { setconfirmPassword(e.target.value) }} value={confirmPassword} placeholder='confirm password' />

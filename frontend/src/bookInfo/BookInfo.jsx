@@ -61,7 +61,7 @@ const BookInfo = () => {
             </table>
             <div id="info-btn-div">
                 <button id="delete" onClick={() => { handleDelete(data.ISBN) }}>Delete</button>
-                <button id="edit" onClick={() => { navigate(`/edit`) }}>Edit</button>
+                <button id="edit" onClick={() => { navigate(`/edit/${data.ISBN}`) }}>Edit</button>
             </div>
         </>
     )
