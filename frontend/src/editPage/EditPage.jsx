@@ -34,7 +34,7 @@ const EditPage = () => {
 
   return (
     <div id="edit-form-wrapper-div">
-      <h1>Edit Book</h1>
+      <h1 style={{color:"red",textAlign:"center",textDecoration:"underline"}}>Edit Book</h1>
       <form onSubmit={handleSubmit} id="edit-form">
         <div>
           <label htmlFor="title">Title</label>
